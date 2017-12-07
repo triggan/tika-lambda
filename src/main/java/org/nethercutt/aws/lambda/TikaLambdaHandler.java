@@ -17,7 +17,11 @@ import com.amazonaws.services.s3.event.S3EventNotification.S3EventNotificationRe
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 
+<<<<<<< HEAD
 public abstract class TikaLambdaHandler implements RequestHandler<S3Event, String> {
+=======
+public class TikaLambdaHandler implements RequestHandler<S3Event, String> {
+>>>>>>> Edited POM file to include additional runtime dependencies.
 
     public String handleRequest(S3Event s3event, Context context) {
         LambdaLogger logger = context.getLogger();
@@ -34,9 +38,16 @@ public abstract class TikaLambdaHandler implements RequestHandler<S3Event, Strin
 
             AmazonS3 s3Client = new AmazonS3Client();
             S3Object s3Object = s3Client.getObject(new GetObjectRequest(bucket, key));
+<<<<<<< HEAD
             
             try (InputStream objectData = s3Object.getObjectContent()) {
                 String extractedText = tika.parseToString(objectData);
+=======
+
+            try (InputStream objectData = s3Object.getObjectContent()) {
+                String extractedText = tika.parseToString(objectData);
+                //System.out.println(tika.detect(objectData));
+>>>>>>> Edited POM file to include additional runtime dependencies.
                 processExtractedText(s3event, extractedText);
             }
         } catch (IOException | TikaException e) {
@@ -45,6 +56,14 @@ public abstract class TikaLambdaHandler implements RequestHandler<S3Event, Strin
         }
         return "Ok";
     }
+<<<<<<< HEAD
     
     public abstract void processExtractedText(S3Event s3event, String extractedText);
+=======
+
+    public void processExtractedText(S3Event s3event, String extractedText) {
+
+      System.out.println("Extracted Text: " + extractedText);
+    }
+>>>>>>> Edited POM file to include additional runtime dependencies.
 }
