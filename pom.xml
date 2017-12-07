@@ -34,15 +34,12 @@
       <artifactId>tika-parsers</artifactId>
       <version>1.9</version>
     </dependency>
-<<<<<<< HEAD
-=======
 		<dependency>
    		<groupId>org.apache.httpcomponents</groupId>
    		<artifactId>httpclient</artifactId>
    		<version>4.5.2</version>
    		<scope>runtime</scope>
  		</dependency>
->>>>>>> Edited POM file to include additional runtime dependencies.
   </dependencies>
 
   <build>
