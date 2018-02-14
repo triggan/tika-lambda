@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform:
+- AWS::Serverless-2016-10-31
+
+Parameters:
+  ProjectId:
+    Type: String
+    Description: Apache Tika running within a Lambda function.
+
+Resources:
+  GetHelloWorld:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: org.nethercutt.aws.lambda.TikaLambdaHandler
+      CodeUri: ./target/tika-lambda-1.0-SNAPSHOT.jar
+      Runtime: java8
+    Events:
+        S3CreateObject:
+          Type: S3
+          Properties:
+            Bucket: !Ref MyPhotoBucket
+            Events: s3:ObjectCreated:*
+
+  MyPhotoBucket:
+    Type: AWS::S3::Bucket
